@@ -1,0 +1,10 @@
+.settings/
+.tscache/
+src/.baseDir.ts
+
+node_modules/
+typings/
+
+target/
+
+*.log
