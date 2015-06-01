@@ -20,7 +20,7 @@ module.exports = function(grunt) {
   var clientTask = {
     src: clientSrc,
     baseDir: 'src/client/',
-    outDir: 'target/public/',
+    outDir: 'target/client/',
     options:  { module: 'amd' }
   };
 
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
       },
       html: {
         files: [
-         { expand: true, cwd: 'src/client', src: '**/*.html', dest: 'target/public', filter: 'isFile' }
+         { expand: true, cwd: 'src/client', src: '**/*.html', dest: 'target/client', filter: 'isFile' }
         ]
       }
     },
@@ -79,13 +79,16 @@ module.exports = function(grunt) {
     clean: ['target/'],
     shell: {
       npm: {
-        command: 'npm watch'
+        command: 'npm run-script watch'
       },
       semanticBuild: {
         command: ['cd semantic', 'gulp build'].join('&&')
       },
       semanticWatch: {
         command: ['cd semantic', 'gulp watch'].join('&&')
+      },
+      rjs: {
+        command: 'node ./node_modules/.bin/r.js -o ./target/client/amdConfigRjs.js'
       }
     },
     less: {
@@ -99,7 +102,8 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('default', ['build', 'concurrent:default']);
-  grunt.registerTask('build', ['tsd:install', 'clean', 'shell:semanticBuild', 'copy', 'ts:node', 'ts:client', 'less:dev']);
+  grunt.registerTask('default', ['build-dev', 'concurrent:default']);
+  grunt.registerTask('build-dev', ['tsd:install', 'clean', 'shell:semanticBuild', 'copy', 'ts:node', 'ts:client', 'less:dev']);
+  grunt.registerTask('build', ['tsd:install', 'clean', 'shell:semanticBuild', 'copy', 'ts:node', 'ts:client', 'less:dev', 'shell:rjs']);
   grunt.registerTask('travis', ['tsd:install', 'ts:compile']);
 };
