@@ -63,7 +63,6 @@
     "requirejs": "^2.1.18",
     "requirejs-text": "^2.0.12",
     "semantic-ui": "^1.12.3",
-    "semantic-ui-css": "~1.12.3",
     "serve-favicon": "~2.2.0",
     "typescript": "~1.5.0-beta",
     "underscore": "^1.8.3"
