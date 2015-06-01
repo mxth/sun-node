@@ -1,11 +1,13 @@
 {
   "name": "sunrise",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
-    "start": "nodemon --watch target/ --ignore target/client/ --ignore target/public/ --delay 3 ./bin/www",
+    "watch": "nodemon --watch target/ --ignore target/client/ --ignore target/public/ --delay 3 ./bin/www",
+    "postinstall": "grunt build",
+    "start": "node ./bin/www",
     "test": "mocha target/test"
   },
+  "main": "bin/www",
   "dependencies": {
     "angular": "^1.4.0",
     "angular-animate": "^1.4.0",
@@ -65,5 +67,8 @@
     "serve-favicon": "~2.2.0",
     "typescript": "~1.5.0-beta",
     "underscore": "^1.8.3"
+  },
+  "engines": {
+    "node": "0.12.x"
   }
 }

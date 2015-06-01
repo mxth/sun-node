@@ -79,7 +79,7 @@ module.exports = function(grunt) {
     clean: ['target/'],
     shell: {
       npm: {
-        command: 'npm start'
+        command: 'npm watch'
       },
       semanticBuild: {
         command: ['cd semantic', 'gulp build'].join('&&')
@@ -99,6 +99,7 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('default', ['tsd:install', 'clean', 'shell:semanticBuild', 'copy', 'ts:node', 'ts:client', 'less:dev', 'concurrent:default']);
+  grunt.registerTask('default', ['build', 'concurrent:default']);
+  grunt.registerTask('build', ['tsd:install', 'clean', 'shell:semanticBuild', 'copy', 'ts:node', 'ts:client', 'less:dev']);
   grunt.registerTask('travis', ['tsd:install', 'ts:compile']);
 };
