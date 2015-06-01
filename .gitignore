@@ -1,6 +1,6 @@
 .settings/
 .tscache/
-src/.baseDir.ts
+**/.baseDir.ts
 
 node_modules/
 typings/

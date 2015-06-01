@@ -2,28 +2,37 @@ var _ = require('underscore');
 
 module.exports = function(grunt) {
 
-  var typeScriptSource, browserifySource, htmlSource;
+  var nodeSrc, clientSrc;
 
-  typeScriptSource = ['src/**/*.ts'];
-  browserifySource = ['target/client/**/*.js'];
+  nodeSrc = ['src/**/*.ts', '!src/client/**/*.ts'];
+  clientSrc = ['src/client/**/*.ts'];
 
-  // use for browserify watch task, since it cannot be added in browserify task
-  htmlSource = ['target/client/**/*.html'];
-  
-  var tsTask = {
-    src: typeScriptSource,
+  var nodeTask = {
+    src: nodeSrc,
     baseDir: 'src/',
     outDir: 'target/',
     options:  { module: 'commonjs' }
   };
 
-  var tsWatchTask = _.clone(tsTask);
-  tsWatchTask.watch = 'src/';
+  var tsNodeWatchTask = _.clone(nodeTask);
+  tsNodeWatchTask.watch = ['src/**/*.ts', '!src/client/'];
+
+  var clientTask = {
+    src: clientSrc,
+    baseDir: 'src/client/',
+    outDir: 'target/public/',
+    options:  { module: 'amd' }
+  };
+
+  var clientWatchTask = _.clone(clientTask);
+  clientWatchTask.watch = clientSrc;
 
   grunt.initConfig({
     ts: {
-      compile: tsTask,
-      watch: tsWatchTask
+      node: nodeTask,
+      nodeWatch: tsNodeWatchTask,
+      client: clientTask,
+      clientWatch: clientWatchTask
     },
     tsd: {
       install: {
@@ -33,46 +42,63 @@ module.exports = function(grunt) {
         }
       }
     },
-    browserify: {
-      bundle: {
-        src: browserifySource,
-        dest: 'target/public/bundle.js',
-        options: {
-          transform: ['brfs']
-        }
-      }
-    },
     concurrent: {
       options: {
         logConcurrentOutput: true
       },
       default: {
-        tasks: ['ts:watch', 'watch:src', 'watch:browserify']
+        tasks: ['ts:nodeWatch', 'ts:clientWatch', 'watch:assets', 'watch:less', 'watch:html', 'shell:npm']
       }
     },
     copy: {
       src: {
         files: [
-         { expand: true, cwd: 'src/', src: '**/*', dest: 'target/', filter: 'isFile' },
-         { expand: true, src: 'node_modules/semantic-ui-css/*.css', dest: 'target/public/', filter: 'isFile' }
+         { expand: true, cwd: 'src/', src: '**/*', dest: 'target/', filter: 'isFile' }
+        ]
+      },
+      html: {
+        files: [
+         { expand: true, cwd: 'src/client', src: '**/*.html', dest: 'target/public', filter: 'isFile' }
         ]
       }
     },
     watch: {
-      src: {
-        files: 'src/**/*',
+      assets: {
+        files: ['src/**/*', '!src/**/*.less', '!src/**/*.ts', '!src/**/*.html'],
         tasks: ['copy:src']
       },
-      browserify: {
-        files: browserifySource.concat(htmlSource),
-        tasks: ['browserify:bundle']
+      less: {
+        files: 'src/**/*.less',
+        tasks: ['less:dev']
+      },
+      html: {
+        files: 'src/client/**/*.html',
+        tasks: ['copy:html']
       }
     },
-    clean: ['target/']
+    clean: ['target/'],
+    shell: {
+      npm: {
+        command: 'npm start'
+      },
+      semanticBuild: {
+        command: ['cd semantic', 'gulp build'].join('&&')
+      },
+      semanticWatch: {
+        command: ['cd semantic', 'gulp watch'].join('&&')
+      }
+    },
+    less: {
+      dev: {
+        files: {
+          'target/public/main.css': 'src/client/style.less'
+        }
+      }
+    }
   });
 
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('default', ['tsd:install', 'clean', 'copy:src', 'ts:compile', 'browserify:bundle', 'concurrent:default']);
+  grunt.registerTask('default', ['tsd:install', 'clean', 'shell:semanticBuild', 'copy', 'ts:node', 'ts:client', 'less:dev', 'concurrent:default']);
   grunt.registerTask('travis', ['tsd:install', 'ts:compile']);
 };

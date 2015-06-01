@@ -1,0 +1,18 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@headerFont        : 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@fontSmoothing     : antialiased;
+
+@importGoogleFonts : true;
+@googleFontName    : 'Open Sans';
+@googleFontSizes   : '400,700,400italic,700italic';
+@googleSubset      : 'latin';
+
+@googleProtocol    : 'https://';
+@googleFontRequest : '@{googleFontName}:@{googleFontSizes}&subset=@{googleSubset}';
+
+@emSize   : 16px;
+@fontSize : 16px;

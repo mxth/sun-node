@@ -1,26 +1,57 @@
-/// <reference path="../../typings/node/node.d.ts"/>
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 
-import * as angular from 'angular';
-import * as fs from 'fs';
+/// <amd-dependency path="text!./nav.html" />
+/// <amd-dependency path="text!./home.html" />
 
+import 'angular-animate';
 import 'angular-ui-router';
-
+import 'ui/breadcrumb/breadcrumb';
+import 'ui/image';
 import './tkd/tkd';
 
+declare var require;
+
+import * as angular from 'angular';
+
 angular
-  .module('home', ['ui.router', 'home.tkd'])
-  .config(['$stateProvider', $stateProvider => {
-    $stateProvider
-      .state('home', {
-        url: '/',
-        views: {
-          nav: {
-            template: fs.readFileSync(`${__dirname}/nav.html`)
-          },
-          content: {
-            template: fs.readFileSync(`${__dirname}/home.html`)
-          }
+  .module('home', [
+    'ngAnimate',
+    'ui.router',
+    'ui.breadcrumb',
+    'ui.image',
+    'home.tkd'
+  ])
+  .config(config)
+  .run(run);
+
+config.$inject = ['$stateProvider', '$urlRouterProvider'];
+
+function config($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/');
+
+  $stateProvider
+    .state('home', {
+      url: '/',
+      views: {
+        nav: {
+          template: require("text!./nav.html")
+        },
+        content: {
+          template: require("text!./home.html")
         }
-      });
-  }]);
+      },
+      ncyBreadcrumb: {
+        label: 'Home'
+      }
+    });
+}
+
+run.$inject = ['$rootScope', '$state'];
+
+function run($rootScope, $state) {
+  $rootScope.$state = $state;
+}
+
+angular.element(document).ready(() => {
+  angular.bootstrap(document, ['home']);
+});

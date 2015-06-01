@@ -2,7 +2,10 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/static/node_modules/semantic-ui-css/semantic.min.css')
-    script(src='/static/bundle.js')
+    link(rel='stylesheet', href='/static/semantic/semantic.min.css')
+    link(rel='stylesheet', href='/static/main.css')
+    script(src='/static/node_modules/requirejs/require.js')
+    script(src='/static/amdConfig.js')
+    script(src='/static/boot.js')
   body
     block content
