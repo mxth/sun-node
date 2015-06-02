@@ -1,5 +1,5 @@
 <div class="ui breadcrumb">
-  <span ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract">
+  <span ng-repeat="step in steps" ng-class="{active: $last, 'hidden-xs': $first}" ng-switch="$last || !!step.abstract">
     <a ng-switch-when="false" href="{{step.ncyBreadcrumbLink}}" class="section">{{step.ncyBreadcrumbLabel}}</a>
     <div ng-switch-when="true" class="active section">{{step.ncyBreadcrumbLabel}}</div>
     <i class="right chevron icon divider" ng-hide="$last"></i>
