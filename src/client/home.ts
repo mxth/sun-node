@@ -1,12 +1,15 @@
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 
-/// <amd-dependency path="text!./nav.html" />
+/// <amd-dependency path="text!./nav/nav.html" />
 /// <amd-dependency path="text!./home.html" />
 
 import 'angular-animate';
 import 'angular-ui-router';
 import 'ui/breadcrumb/breadcrumb';
 import 'ui/image';
+
+import './nav/sidebar';
+
 import './tkd/tkd';
 
 declare var require;
@@ -19,6 +22,7 @@ angular
     'ui.router',
     'ui.breadcrumb',
     'ui.image',
+    'nav.sidebar',
     'home.tkd'
   ])
   .config(config)
@@ -34,7 +38,7 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/',
       views: {
         nav: {
-          template: require("text!./nav.html")
+          template: require("text!./nav/nav.html")
         },
         content: {
           template: require("text!./home.html")

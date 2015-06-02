@@ -1,7 +1,9 @@
 extends layout
 
 block content
-  div(ui-view='nav')
-  div(class='ui page grid')
-    div(class='column')
-      div(ui-view='content')
+  sr-nav-sidebar
+  div(class='pusher')
+    div(ui-view='nav')
+    div(class='ui page grid')
+      div(class='column')
+        div(ui-view='content')
