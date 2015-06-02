@@ -6,9 +6,9 @@ import 'semantic-sidebar';
 
 angular
   .module('ui.sidebar', [])
-  .directive('srImageSrc', srImageSrc);
+  .directive('smSidebar', smSidebar);
 
-function srImageSrc() {
+function smSidebar() {
   return {
     restrict: 'A',
     link: (scope, element, attrs) => {

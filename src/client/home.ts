@@ -1,6 +1,6 @@
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 
-/// <amd-dependency path="text!./nav.html" />
+/// <amd-dependency path="text!./nav/nav.html" />
 /// <amd-dependency path="text!./home.html" />
 
 import 'angular-animate';
@@ -34,7 +34,7 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/',
       views: {
         nav: {
-          template: require("text!./nav.html")
+          template: require("text!./nav/nav.html")
         },
         content: {
           template: require("text!./home.html")
