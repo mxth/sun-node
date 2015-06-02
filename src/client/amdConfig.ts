@@ -3,7 +3,7 @@ declare var requirejs;
 requirejs.config({
   baseUrl: 'static',
   shim: {
-    'angular': { exports: 'angular' },
+    'angular': { exports: 'angular', deps: ['jquery'] },
     'underscore': { exports: '_' },
     'angular-animate': { deps: ['angular'] },
     'angular-ui-router': { deps: ['angular'] },
@@ -15,6 +15,7 @@ requirejs.config({
     'angular-ui-router': './node_modules/angular-ui-router/build/angular-ui-router',
     'angular-breadcrumb': './node_modules/angular-breadcrumb/dist/angular-breadcrumb',
     'underscore': './node_modules/underscore/underscore',
-    'text': './node_modules/requirejs-text/text'
+    'text': './node_modules/requirejs-text/text',
+    'jquery': './node_modules/jquery/dist/jquery'
   }
 });
