@@ -1,0 +1,20 @@
+<h1 class="ui header">History</h1>
+<p>The historical background of Taekwondo development will be explained following the chronological order of 4 different ages; ancient times, middles ages, modern ages and present times.</p>
+
+<div class="ui vertical menu visible-xs center-block">
+  <a class="item" ui-sref=".origin" ng-class="{active: $state.is('^.origin')}">Origin</a>
+  <a class="item">Middle Age</a>
+  <a class="item">Modern Time</a>
+  <a class="item">Present</a>
+</div>
+
+<div class="ui top attached tabular fluid four item menu hidden-xs">
+  <a class="item" ui-sref=".origin" ng-class="{active: $state.is('^.origin')}">Origin</a>
+  <a class="item">Middle Age</a>
+  <a class="item">Modern Time</a>
+  <a class="item">Present</a>
+</div>
+
+<div class="ui bottom attached segment">
+  <div ui-view="history"></div>
+</div>

@@ -4,6 +4,10 @@
 import * as angular from 'angular';
 
 import 'angular-ui-router';
+
+import './whatis/whatis';
+import './philosophy/philosophy';
+import './history/history';
 import './poomsae/poomsae';
 import './terminology/terminology';
 
@@ -12,6 +16,9 @@ declare var require;
 angular
   .module('home.tkd', [
     'ui.router',
+    'home.tkd.whatis',
+    'home.tkd.philosophy',
+    'home.tkd.history',
     'home.tkd.poomsae',
     'home.tkd.terminology'
   ])
