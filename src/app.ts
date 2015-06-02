@@ -30,6 +30,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 if (isDev) {
   app.use('/static/node_modules', express.static(path.join(__dirname, '../node_modules')));
   app.use('/static', express.static(path.join(__dirname, 'client')));
+  app.use('/src', express.static(path.join(__dirname, '../src')));
 }
 
 /* GET home page. */

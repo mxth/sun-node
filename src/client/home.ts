@@ -5,11 +5,12 @@
 
 import 'angular-animate';
 import 'angular-ui-router';
+
 import 'ui/breadcrumb/breadcrumb';
 import 'ui/image';
+import 'ui/backToTop';
 
 import './nav/sidebar';
-
 import './tkd/tkd';
 
 declare var require;
@@ -20,8 +21,11 @@ angular
   .module('home', [
     'ngAnimate',
     'ui.router',
+
     'ui.breadcrumb',
     'ui.image',
+    'ui.backToTop',
+
     'nav.sidebar',
     'home.tkd'
   ])

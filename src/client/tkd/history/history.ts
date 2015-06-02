@@ -30,7 +30,6 @@ angular
   }])
   .run(['$rootScope', '$state', ($rootScope, $state) => {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      console.log(toState.name);
       if (toState.name == 'home.tkd.history') {
         event.preventDefault(); 
         $state.go('home.tkd.history.origin');

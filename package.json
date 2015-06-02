@@ -2,7 +2,7 @@
   "name": "sunrise",
   "version": "0.0.0",
   "scripts": {
-    "watch": "nodemon --watch target/ --ignore target/client/ --ignore target/public/ --delay 3 ./bin/www",
+    "watch": "NODE_ENV=development nodemon --watch target/ --ignore target/client/ --ignore target/public/ --delay 3 ./bin/www",
     "postinstall": "grunt build",
     "start": "NODE_ENV=production node ./bin/www",
     "test": "mocha target/test"
@@ -65,7 +65,8 @@
     "serve-favicon": "~2.2.0",
     "typescript": "~1.5.0-beta",
     "underscore": "^1.8.3",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "angular-scroll": "~0.7.1"
   },
   "engines": {
     "node": "0.12.x"
