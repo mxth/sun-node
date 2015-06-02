@@ -23,7 +23,7 @@
     'text': '../../node_modules/requirejs-text/text',
     'jquery': '../../node_modules/jquery/dist/jquery',
 
-    'semantic-sidebar': './semantic/components/sidebar',
+    'semantic-sidebar': '../public/semantic/components/sidebar',
 
     'requireLib': '../../node_modules/requirejs/require'
   }
