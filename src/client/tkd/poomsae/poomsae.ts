@@ -11,6 +11,10 @@ import 'ui/dropdown';
 import 'ui/breadcrumb/breadcrumb';
 
 import './taegeuk1/taegeuk1';
+import './taegeuk2/taegeuk2';
+import './taegeuk3/taegeuk3';
+import './taegeuk4/taegeuk4';
+import './taegeuk5/taegeuk5';
 
 declare var require;
 
@@ -56,6 +60,10 @@ angular
     'ui.dropdown',
     'ui.breadcrumb',
 
-    'home.tkd.poomsae.taegeuk1'
+    'home.tkd.poomsae.taegeuk1',
+    'home.tkd.poomsae.taegeuk2',
+    'home.tkd.poomsae.taegeuk3',
+    'home.tkd.poomsae.taegeuk4',
+    'home.tkd.poomsae.taegeuk5'
   ])
   .config(config);
