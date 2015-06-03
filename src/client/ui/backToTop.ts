@@ -24,7 +24,6 @@ function srBackToTop($document) {
           element.hide();
       });
       element.click(() => {
-        console.log('as');
         $document.scrollTopAnimated(0);
       });
     }

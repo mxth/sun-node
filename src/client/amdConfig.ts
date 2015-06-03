@@ -11,7 +11,9 @@ requirejs.config({
     'angular-breadcrumb': { deps: ['angular'] },
     'angular-scroll': { deps: ['angular'] },
 
-    'semantic-sidebar': { deps: ['jquery'] }
+    'semantic-sidebar': { deps: ['jquery'] },
+    'semantic-transition': { deps: ['jquery'] },
+    'semantic-dropdown': { deps: ['semantic-transition'] }
   },
   paths: {
     'angular': './node_modules/angular/angular',
@@ -24,6 +26,8 @@ requirejs.config({
     'text': './node_modules/requirejs-text/text',
     'jquery': './node_modules/jquery/dist/jquery',
 
-    'semantic-sidebar': './semantic/components/sidebar'
+    'semantic-sidebar': './semantic/components/sidebar',
+    'semantic-transition': './semantic/components/transition',
+    'semantic-dropdown': './semantic/components/dropdown'
   }
 });

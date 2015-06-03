@@ -12,7 +12,9 @@
     'angular-breadcrumb': { deps: ['angular'] },
     'angular-scroll': { deps: ['angular'] },
 
-    'semantic-sidebar': { deps: ['jquery'] }
+    'semantic-sidebar': { deps: ['jquery'] },
+    'semantic-transition': { deps: ['jquery'] },
+    'semantic-dropdown': { deps: ['semantic-transition'] }
   },
   paths: {
     'angular': '../../node_modules/angular/angular',
@@ -26,6 +28,8 @@
     'jquery': '../../node_modules/jquery/dist/jquery',
 
     'semantic-sidebar': '../public/semantic/components/sidebar',
+    'semantic-transition': '../public/semantic/components/transition',
+    'semantic-dropdown': '../public/semantic/components/dropdown',
 
     'requireLib': '../../node_modules/requirejs/require'
   }
